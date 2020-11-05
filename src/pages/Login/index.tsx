@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function Login() {
   return (
     <Container>
-      <Form>
+      <Form action="POST" method="post">
         <LoginField>
           <h4>Entre</h4>
           <TextField type="email" label="E-mail"></TextField>
@@ -19,16 +19,16 @@ function Login() {
           ></TextField>
           <ButtonArea>
             <Button className="button" color="primary">
-              <Link to="/esqueceu-senha">Esqueceu a Senha?</Link>
+              <Link className="linking" to="/esqueceu-senha">Esqueceu a Senha?</Link>
             </Button>
             <Button className="button" variant="contained" color="primary" type="submit">
-              <Link to="/feed">Entrar</Link>
+              <Link className="linking-button" to="/feed">Entrar</Link>
             </Button>
           </ButtonArea>
         </LoginField>
         <blockquote>
           <h4>Cadastre - se</h4>
-          <p>Não está cadastrado? Realize seu cadastro agora! <Link to="/signup">Clique aqui</Link> </p>
+          <p>Não está cadastrado? Realize seu cadastro agora! <Link className="linking" to="/signup">Clique aqui</Link> </p>
         </blockquote>
       </Form>
     </Container>
