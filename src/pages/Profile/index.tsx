@@ -1,7 +1,6 @@
 //commom imports
-import React, { useState, useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
-import axios from "axios";
 //imports material icons
 import EditIcon from '@material-ui/icons/Edit';
 import { Input, InputLabel, MenuItem, ListItemText, Select, Checkbox } from "@material-ui/core";//extern archives
@@ -10,10 +9,10 @@ import avatarFake from "../../assets/Profile/defaultAvatar@72x.png";
 import imgBackground from "../../assets/HomePage/fundo@72x.png";
 import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
-import { api, getAll } from "../../services/api";
+import { getAll /*getUser*/ } from "../../services/api";
 
 const Profile: React.FC = () => {
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -27,7 +26,7 @@ const Profile: React.FC = () => {
 
 
   const usuarioTeste = async () => {
-    const cep = await api.get("/")
+    const cep = await getAll();
     // const cep = await getAll().then(function () {
     //   console.log("deu certo");
     // }).catch(function (error) {
@@ -43,10 +42,10 @@ const Profile: React.FC = () => {
     usuarioTeste();
   };
 
-  const saveForm = () => {
-    alert("Dados Salvos");
+  // const saveForm = () => {
+  //   alert("Dados Salvos");
 
-  };
+  // };
   const techsFakeData = [
     "React JS",
     "React Native",
@@ -222,18 +221,18 @@ const Icon = styled.div`
   border: #d0d0d0 solid 4px;
 `;
 
-const Button = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: flex-end;
-  padding: 6px;
-  background-color: #a8a0a0;
-  opacity: 0.96;
-  border: rgb(112, 117, 138) solid 2px;
-  border-radius: 12px;
-  margin-top: 15px;
-`;
+// const Button = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   align-self: flex-end;
+//   padding: 6px;
+//   background-color: #a8a0a0;
+//   opacity: 0.96;
+//   border: rgb(112, 117, 138) solid 2px;
+//   border-radius: 12px;
+//   margin-top: 15px;
+// `;
 
 const UserData = styled.h3`
   font-family: DesirasNonCommercial;

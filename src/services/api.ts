@@ -2,7 +2,7 @@ import axios from "axios";
 
 //BASE URL DA APLICACAO
 export const api = axios.create({
-    baseURL: "http://200.98.204.176:8080/api/usuario/all",
+    baseURL: "http://localhost:8080",
 });
 
 //ROTAS DE USUARIO
