@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 function EsqueceuSenha() {
   return (
     <Container>
-      <Form action="POST" method="post">
+      <Form>
         <h3>Esqueceu a sua senha</h3>
         <p className="paragraph">
           Insira seu email de cadastro para enviarmos a chave de recuperação!

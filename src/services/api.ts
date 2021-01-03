@@ -6,8 +6,8 @@ export const api = axios.create({
 });
 
 //ROTAS DE USUARIO
-export const createUser = (newUser:object) => {
-    api.post("/api/usuario/", newUser );
+export const createUser = (email: string, nome: string, senha: string) => {
+    api.post("/api/usuario/", {data:{email, nome, senha}});
 }
 export const updateUser = (id: number, newData: object) => {
     api.put(`/api/usuario/${id}`, newData);
@@ -19,9 +19,11 @@ export const deleteUser = (id: number) => {
     api.post(`/api/usuario/${id}`);
 }
 export const getAll = () => {
-    return api.get("/api/usuario/all", {headers:{
-        "Access-Control-Allow-Origins": true,
-    }});
+    return api.get("/api/usuario/all", {
+        headers: {
+            "Access-Control-Allow-Origins": true,
+        }
+    });
 }
 
 //ROTAS DE PROJETOS

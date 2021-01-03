@@ -1,24 +1,40 @@
-import React, {FormEvent,useState} from "react";
+import React, { FormEvent, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import {InputLabel, Select, MenuItem} from "@material-ui/core";
+import { InputLabel, Select, MenuItem } from "@material-ui/core";
 
 import "./index.css";
 import imgBack from "../../assets/Signup/bg mar barco_Prancheta 1.png";
 import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
+import { createUser as create } from "../../services/api";
 
 function SingUp() {
   const [nome, setNome] = useState("")
-  const [Email, setEmail] = useState("")
+  const [email, setEmail] = useState("")
   const [senha, setSenha] = useState("")
 
-  const changeName = (nome:string)=>{
+  const changeName = (nome: string) => {
     setNome(nome);
   }
-  const createUser = async(e:FormEvent)=>{
+  const changeEmail = (email: string) => {
+    setEmail(email);
+  }
+  const changeSenha = (senha: string) => {
+    setSenha(senha);
+  }
+  const makeNothing = (value: string) => {
+    console.log("faz nada", value)
+  }
+  const createUser = async (e: FormEvent) => {
     e.preventDefault();
+    try {
 
+      const createdUser = await create(nome, senha, email);
+      console.log(createdUser);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -28,12 +44,12 @@ function SingUp() {
       <Content>
         <h4>CADASTRE-SE</h4>
         <Form onSubmit={createUser} >
-          <InputDefault name="nome" placeholder="Nome" />
-          <InputDefault name="sobrenome" placeholder="Sobrenome" />
-          <InputDefault name="email" placeholder="E-Mail" />
-          <InputDefault name="senha" placeholder="Senha" />
-          <InputDefault name="confirmeSenha" placeholder="Confirme a Senha" />
-          <InputDefault name="Data" placeholder="Data de Nascimento" />
+          <InputDefault name="nome" placeholder="Nome" newValue={changeName} />
+          <InputDefault name="sobrenome" placeholder="Sobrenome" newValue={makeNothing} />
+          <InputDefault name="email" placeholder="E-Mail" newValue={changeEmail} />
+          <InputDefault name="senha" placeholder="Senha" newValue={changeSenha} />
+          <InputDefault name="confirmeSenha" placeholder="Confirme a Senha" newValue={makeNothing} />
+          <InputDefault name="Data" placeholder="Data de Nascimento" newValue={makeNothing} />
           <div style={{ display: "flex", flex: 1, maxHeight: "60px", flexDirection: "column", minWidth: "100%" }}>
             <InputLabel id="select-label" className="inputLabel">
               Função

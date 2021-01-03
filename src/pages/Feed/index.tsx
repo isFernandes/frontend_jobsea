@@ -34,7 +34,8 @@ const Content = styled.div`
   display: flex;
   flex-direction: row;
   flex: 1;
-  height: 100vh;
+  height:100%;
+  margin-top:70px;
 `;
 
 

@@ -9,6 +9,8 @@ import {
 import { Menu, MenuItem, InputBase, Typography, IconButton, Toolbar, AppBar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import MoreIcon from "@material-ui/icons/MoreVert";
+import styled from "styled-components";
+
 
 import IconPadrao from "../../assets/HomePage/leme-rodape@72x.png";
 import "./index.css";
@@ -116,10 +118,6 @@ const Navbar: React.FC<PropsNavBar> = ({ title, placeholder }) => {
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   const handleMobileMenuClose = () => {
     setMobileMoreAnchorEl(null);
   };
@@ -184,7 +182,7 @@ const Navbar: React.FC<PropsNavBar> = ({ title, placeholder }) => {
               color="inherit"
               aria-label="open drawer"
             >
-              <img src={IconPadrao} style={{ height: 48 }} />
+              <Icon src={IconPadrao} style={{ height: 48 }} />
             </IconButton>
           </Link>
           <Typography id="teste" className={classes.title} variant="h6" noWrap>
@@ -243,3 +241,5 @@ const Navbar: React.FC<PropsNavBar> = ({ title, placeholder }) => {
 };
 
 export default Navbar;
+
+const Icon = styled.img``;

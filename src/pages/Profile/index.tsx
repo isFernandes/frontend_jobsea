@@ -1,9 +1,9 @@
 //commom imports
-import React from "react";
+import React, { FormEvent, useState } from "react";
 import styled from "styled-components";
 //imports material icons
 import EditIcon from '@material-ui/icons/Edit';
-import { Input, InputLabel, MenuItem, ListItemText, Select, Checkbox } from "@material-ui/core";//extern archives
+import { Input, InputLabel, MenuItem,  Select, Chip } from "@material-ui/core";//extern archives
 import "./index.css";
 import avatarFake from "../../assets/Profile/defaultAvatar@72x.png";
 import imgBackground from "../../assets/HomePage/fundo@72x.png";
@@ -24,7 +24,6 @@ const Profile: React.FC = () => {
     },
   };
 
-
   const usuarioTeste = async () => {
     const cep = await getAll();
     // const cep = await getAll().then(function () {
@@ -33,7 +32,7 @@ const Profile: React.FC = () => {
     //   console.log(error);
     // });
 
-     console.log(cep);
+    console.log(cep);
   }
 
 
@@ -72,8 +71,9 @@ const Profile: React.FC = () => {
     "Jogador de r6",
   ];
 
-  const [techs, setTechs] = React.useState<string[]>([]);
-  const [softs, setSofts] = React.useState<string[]>([]);
+  const [techs, setTechs] = useState<string[]>([]);
+  const [softs, setSofts] = useState<string[]>([]);
+  const [bio, setBio] = useState("");
 
   const handleSelectTechs = (event: React.ChangeEvent<{ value: unknown }>) => {
     setTechs(event.target.value as string[]);
@@ -83,12 +83,21 @@ const Profile: React.FC = () => {
     setSofts(event.target.value as string[]);
   };
 
+  const handleDataSubmit = (e: FormEvent)=>{
+    e.preventDefault();
+
+    console.log(bio);
+  }
+  const changeBio = (bio: string)=>{
+    setBio(bio);
+  }
+
   return (
 
     <Container>
       <Navbar placeholder="Busque um freelancer ..." title="Dashboard" />
       <ImageBackground src={imgBackground} />
-      <Content>
+      <Content onSubmit={handleDataSubmit}>
         <Header>
           <Avatar src={avatarFake} />
           <Icon className="icon" onClick={() => editImage()}>
@@ -100,21 +109,26 @@ const Profile: React.FC = () => {
           </UserData>
 
         <div className="align">
-          <InputLabel id="label">SoftSkills</InputLabel>
+          <InputLabel id="label">Habilidades Extras</InputLabel>
           <Select
-            labelId="label"
-            className="select"
+            labelId="demo-mutiple-chip-label"
+            id="select"
             multiple
             value={softs}
             onChange={handleSelectSofts}
-            input={<Input />}
-            renderValue={(selected) => (selected as string[]).join(", ")}
+            input={<Input id="select-multiple-chip" />}
+            renderValue={(selected) => (
+              <div style={{ display: "flex", flexWrap: 'wrap' }}>
+                {(selected as string[]).map((value) => (
+                  <Chip key={value} label={value} style={{ margin: "2px" }} />
+                ))}
+              </div>
+            )}
             MenuProps={MenuProps}
           >
             {SoftFakeData.map((soft) => (
-              <MenuItem key={soft} value={soft}>
-                <Checkbox checked={softs.indexOf(soft) > -1} />
-                <ListItemText primary={soft} />
+              <MenuItem key={soft} value={soft} >
+                {soft}
               </MenuItem>
             ))}
           </Select>
@@ -123,24 +137,30 @@ const Profile: React.FC = () => {
         <div className="align">
           <InputLabel id="label">Habilidades Técnicas</InputLabel>
           <Select
-            labelId="label"
-            className="select"
+            labelId="demo-mutiple-chip-label"
+            id="select"
             multiple
             value={techs}
             onChange={handleSelectTechs}
-            input={<Input />}
-            renderValue={(selected) => (selected as string[]).join(", ")}
+            input={<Input id="select-multiple-chip" />}
+            renderValue={(selected) => (
+              <div style={{ display: "flex", flexWrap: 'wrap' }}>
+                {(selected as string[]).map((value) => (
+                  <Chip key={value} label={value} />
+                ))}
+              </div>
+            )}
             MenuProps={MenuProps}
           >
             {techsFakeData.map((tech) => (
-              <MenuItem key={tech} value={tech}>
-                <Checkbox checked={techs.indexOf(tech) > -1} />
-                <ListItemText primary={tech} />
+              <MenuItem key={tech} value={tech} >
+                {tech}
               </MenuItem>
             ))}
           </Select>
         </div>
-        <InputDefault name="bio" placeholder="Bio" />
+        <InputDefault name="bio" placeholder="Bio" newValue={changeBio}/>
+        <Button className="button">Salvar Dados</Button>
       </Content>
     </Container>
 
@@ -212,27 +232,30 @@ const Icon = styled.div`
   justify-content: center;
   align-items: center;
   align-self: flex-end;
-  padding: 10px;
+  padding: 12px;
   z-index: 2;
   border-radius: 400%;
   margin-bottom: -15px;
   margin-left: -55px;
   background-color: white;
-  border: #d0d0d0 solid 4px;
+  border: #d0d0d0 solid 2px;
 `;
 
-// const Button = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   align-self: flex-end;
-//   padding: 6px;
-//   background-color: #a8a0a0;
-//   opacity: 0.96;
-//   border: rgb(112, 117, 138) solid 2px;
-//   border-radius: 12px;
-//   margin-top: 15px;
-// `;
+const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  padding: 6px;
+  background-color: #538f9c;
+  opacity: 0.96;
+  border: #9fb8bf solid 1.5px;
+  border-radius: 12px;
+  margin-top: 15px;
+  font-family: DesirasNonCommercial;
+  font-weight:bold;
+  color: white;
+`;
 
 const UserData = styled.h3`
   font-family: DesirasNonCommercial;

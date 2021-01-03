@@ -7,9 +7,10 @@ interface InputProps {
   name?: string;
   placeholder: string;
   icon?: React.ComponentType<IconProps>;
+  newValue: (arg0:string) => void;
 }
 
-const InputDefault: React.FC<InputProps> = ({ icon: Icon, name, placeholder, }) => {
+const InputDefault: React.FC<InputProps> = ({ icon: Icon, name, placeholder, newValue }) => {
   const [value, setValue] = useState("")
 
   const handleValueChange = (value: string) => {
@@ -24,7 +25,10 @@ const InputDefault: React.FC<InputProps> = ({ icon: Icon, name, placeholder, }) 
         placeholder={placeholder}
         className="input"
         style={{ minWidth: "100%" }}
-        onChange={(e) => { handleValueChange(e.target.value)}}
+        onChange={(e) => { 
+          handleValueChange(e.target.value); 
+          newValue(e.target.value)
+        }}
       />
       <div>
         {Icon && <Icon />}
