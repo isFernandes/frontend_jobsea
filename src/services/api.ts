@@ -7,7 +7,7 @@ export const api = axios.create({
 
 //ROTAS DE USUARIO
 export const createUser = (email: string, nome: string, senha: string) => {
-    api.post("/api/usuario/", {data:{email, nome, senha}});
+    return api.post("/api/usuario/", {data:{email, nome, senha}});
 }
 export const updateUser = (id: number, newData: object) => {
     api.put(`/api/usuario/${id}`, newData);

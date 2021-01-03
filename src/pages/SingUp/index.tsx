@@ -79,6 +79,8 @@ function SingUp() {
             <button
               className="done-button"
               color="primary"
+              type="submit"
+              onClick={createUser}
             >
               <Link style={{ color: "#3c7380", fontWeight: "bold" }} to="/feed">
                 Pronto

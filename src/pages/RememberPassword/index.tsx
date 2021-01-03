@@ -16,7 +16,7 @@ function EsqueceuSenha() {
   const handleSubmit =(e: FormEvent)=>{
     e.preventDefault();
 
-    console.log(email);
+    console.log(email)
   }
 
   return (

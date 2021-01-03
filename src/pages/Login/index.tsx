@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { Link } from "react-router-dom";
 
-function EsqueceuSenha() {
+function Login() {
   return (
     <Container>
       <Form>
@@ -32,7 +32,7 @@ function EsqueceuSenha() {
   );
 }
 
-export default EsqueceuSenha;
+export default Login;
 
 const Container = styled.div`
   display: flex;
