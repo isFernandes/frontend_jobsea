@@ -7,7 +7,7 @@ import "./index.css";
 import imgBack from "../../assets/Signup/bg mar barco_Prancheta 1.png";
 import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
-import { createUser as create } from "../../services/api";
+import { createUser as create } from "../../services/userServices";
 
 function SingUp() {
   const [nome, setNome] = useState("")

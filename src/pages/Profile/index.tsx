@@ -9,7 +9,7 @@ import avatarFake from "../../assets/Profile/defaultAvatar@72x.png";
 import imgBackground from "../../assets/HomePage/fundo@72x.png";
 import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
-import { getAll /*getUser*/ } from "../../services/api";
+import { getAll /*getUser*/ } from "../../services/userServices";
 
 const Profile: React.FC = () => {
   // const [user, setUser] = useState([]);
