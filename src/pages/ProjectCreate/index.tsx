@@ -10,7 +10,7 @@ const ProjectCreate: React.FC = () => {
   const changeName = (nome: string) => {
     setNameProjeto(nome);
   }
-
+ 
   return (
     <>
       <Navbar title="PROJETOS" placeholder="Busque projetos" route="/" />
