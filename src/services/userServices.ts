@@ -8,15 +8,15 @@ export const createUser = (email: string, nome: string, senha: string) => {
 }
 //atualiza usuario
 export const updateUser = (id: number, newData: object) => {
-    api.put(`/api/usuario/${id}`, newData);
+    return api.put(`/api/usuario/${id}`, newData);
 }
 //busca somente 1 usuario
 export const getUser = (id: number) => {
-    api.get(`/api/usuario/${id}`);
+    return api.get(`/api/usuario/${id}`);
 }
 //deleta usuario
 export const deleteUser = (id: number) => {
-    api.post(`/api/usuario/${id}`);
+    return api.post(`/api/usuario/${id}`);
 }
 //busca todos os usuarios
 export const getAll = () => {
