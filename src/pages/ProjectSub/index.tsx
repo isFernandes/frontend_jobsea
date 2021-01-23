@@ -1,44 +1,37 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from "react";
+import React, { } from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
+
 import Navbar from '../../components/Navbar';
-import { getProject } from "../../services/projectServices";
 
+
+interface RootState {
+  project: any;
+  selectedProject: object;
+}
 function ProjectSub() {
-  const [selectedProject, setSelectedProject] = useState();
-
-  const projeto = localStorage.getItem("selectedProject")
-  useEffect(() => {
-    const getSelectedProject = async (id: any) => {
-      if (id !== null) {
-        const response = await getProject(id);
-        setSelectedProject(response.data);
-      }
-
-    };
-
-    getSelectedProject(projeto);
-  }, [projeto, selectedProject]);
+  const selectedProject = useSelector((state: RootState) => state.project.selectedProject);
 
   return (
     <Container>
       <Navbar route="feed" placeholder="Busque um freelancer ..." title="JOB SEA" />
       <Content>
+        {console.log(selectedProject)}
         <MainFeed>
           <InfoCard>
             <Title>
-              {selectedProject ? selectedProject.nome : "nome do projeto"}
+              {selectedProject !== null ? selectedProject.nome : "Nome do Projeto"}
             </Title>
             <MainInfo >
-              {selectedProject ? selectedProject.descricao : "descricao do projeto"}
+              {selectedProject !== null ? selectedProject.descricao : "Descricao do Projeto"}
             </MainInfo>
             <DetailsInfo >
-              {selectedProject ? selectedProject.tagTecnicas : "tecnicas do projeto"}
+              {selectedProject !== null ? selectedProject.tagTecnicas : "Técnicas do Projeto"}
             </DetailsInfo>
             <OwnerInfo >
-              Cliente - {selectedProject ? selectedProject.tempoEstimado : "Tempo estimado"}
+              Cliente - {selectedProject !== null ? selectedProject.tempoEstimado : "Tempo Estimado"}
             </OwnerInfo>
-            {/* {selectedProject ? selectedProject.id : "ain nn foi"} */}
           </InfoCard>
         </MainFeed>
         <Mural></Mural>
@@ -97,7 +90,7 @@ const InfoCard = styled.div`
   padding: 0 0 0 10px;
 `;
 
-const Title = styled.h3`
+const Title = styled.h1`
     display: flex;
     font-weight:bold;
     align-self: center;
@@ -107,30 +100,34 @@ const Title = styled.h3`
 `;
 
 const MainInfo = styled.p`
-    color: black;
-    font-family: DesirasNonCommercial;
-    font-size: 12px;
+    color: #3c7380;
+    font-family: 'Poppins';
+    font-size: 16px;
     margin-left: 20px;
     display: flex;
     align-self: flex-start;
     letter-spacing: 1.25px;
     text-align:justify;
+    
+    font-weight:700;
     `;
 const DetailsInfo = styled.p`
-    color: black;
-    font-family: DesirasNonCommercial;
-    font-size: 12px;
+    color: #3c7380;
+    font-family: 'Poppins';
+    font-size: 16px;
     margin-left: 20px;
     display: flex;
     align-self: flex-start;
     letter-spacing: 1.25px;
+    font-weight:700;
     `;
 const OwnerInfo = styled.p`
-    color: black;
-    font-family: DesirasNonCommercial;
-    font-size: 12px;
+    color: #3c7380;
+    font-family: 'Poppins';
+    font-size: 16px;
     margin-left: 20px;
     display: flex;
     align-self: flex-start;
     letter-spacing: 1.25px;
+    font-weight:700;
 `;

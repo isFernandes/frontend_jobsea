@@ -1,48 +1,48 @@
 import React from "react";
 import styled from "styled-components";
-import {Redirect} from "react-router-dom";
+import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom";
 
-import {getProject} from "../../services/projectServices"
+import { setProject } from "../../rootReducer/ducks/project";
 
-export interface Crew{
-  id:number;
+export interface Crew {
+  id: number;
   nome: string;
   descricao: string;
   tagTecnicas: string;
-  tempoEstimado:string;
+  tempoEstimado: string;
 }
-interface CrewsProp{
+interface CrewsProp {
   crew: Crew;
 }
 
-const handleClick = async (id: number)=>{
-  const projeto = await getProject(id);
-  console.log(projeto);
-  localStorage.setItem("selectedProject", projeto.data.id);
-  if(projeto){
-    console.log(`id: ${id}`);
-    return <Redirect to="/sub-project" />
-  }
-}
 
-const CrewCard:React.FC<CrewsProp> = ({crew})=> {
+const CrewCard: React.FC<CrewsProp> = ({ crew }) => {
+  const dispatch = useDispatch();
+  const handleClick = async (id: number) => {
+    await dispatch(setProject(id));
+
+  }
+
   return (
-    <Container onClick={()=>handleClick(crew.id)}>
-      <Content>
-        <Title>
-          {crew.nome}
-        </Title>
-        <MainInfo >
-          {crew.descricao}
-        </MainInfo>
-        <DetailsInfo >
-          {crew.tagTecnicas} 
-        </DetailsInfo>
-        <OwnerInfo >
-          Cliente - {crew.tempoEstimado}
-        </OwnerInfo>
-      </Content>
-    </Container>
+    <Link to="/sub-project" style={{alignSelf: "center"}}>
+      <Container onClick={() => handleClick(crew.id)}>
+        <Content>
+          <Title>
+            {crew.nome}
+          </Title>
+          <MainInfo >
+            {crew.descricao}
+          </MainInfo>
+          <DetailsInfo >
+            {crew.tagTecnicas}
+          </DetailsInfo>
+          <OwnerInfo >
+            Cliente - {crew.tempoEstimado}
+          </OwnerInfo>
+        </Content>
+      </Container>
+    </Link>
   );
 }
 

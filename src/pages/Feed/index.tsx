@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+
 import CrewCard, { Crew } from "../../components/Crew";
 import Navbar from '../../components/Navbar';
 import { getAllProject } from "../../services/projectServices";
@@ -26,9 +26,7 @@ function Feed() {
         <Filtros></Filtros>
         <MainFeed>
           {crews.map((crew: Crew) => (
-            <Link to="/sub-project">
               <CrewCard key={crew.id} crew={crew} />
-            </Link>
           ))}
         </MainFeed>
         <Mural></Mural>
