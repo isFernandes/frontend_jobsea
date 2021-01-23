@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import {Redirect} from "react-router-dom";
+
 import {getProject} from "../../services/projectServices"
 
 export interface Crew{
@@ -16,7 +18,11 @@ interface CrewsProp{
 const handleClick = async (id: number)=>{
   const projeto = await getProject(id);
   console.log(projeto);
-  console.log(`id: ${id}`);
+  localStorage.setItem("selectedProject", projeto.data.id);
+  if(projeto){
+    console.log(`id: ${id}`);
+    return <Redirect to="/sub-project" />
+  }
 }
 
 const CrewCard:React.FC<CrewsProp> = ({crew})=> {
@@ -101,28 +107,3 @@ const OwnerInfo = styled.p`
     align-self: flex-start;
     letter-spacing: 1.25px;
 `;
-
-// const CrewRanting = styled.div`
-//   display: flex;
-//   flex:0.2;
-//   align-items: center;
-//   justify-content: center;
-//   background-color: #8ca686;
-//   border-radius: 700%;
-//   padding: 15px;
-// `;
-
-// const CrewInfo = styled.div`
-// padding: 6px 6px 6px 10px; 
-//   display: flex;
-//   align-self: center;
-//   flex-wrap: wrap;
-//   flex: 3;
-// `;
-
-// const CrewValue = styled.div`
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   flex: 1;
-// `;
