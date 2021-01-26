@@ -10,7 +10,7 @@ export interface Crew {
   nome: string;
   descricao: string;
   tagTecnicas: string;
-  tempoEstimado: string;
+  project_owner:any;
 }
 interface CrewsProp {
   crew: Crew;
@@ -39,7 +39,7 @@ const CrewCard: React.FC<CrewsProp> = ({ crew }) => {
             {crew.tagTecnicas}
           </DetailsInfo>
           <OwnerInfo >
-            Dias para realizacao: {crew.tempoEstimado}
+            Cliente - {crew.project_owner[0].nome}
           </OwnerInfo>
         </Content>
       </Container>
