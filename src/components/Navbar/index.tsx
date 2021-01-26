@@ -38,7 +38,7 @@ const Navbar: React.FC<PropsNavBar> = ({ title, placeholder, route, children }) 
           <TextPage href={`/${route}`}>
             <ImgLogo src={IconPadrao} />
           </TextPage>
-          <TitleNavbar href="/">{title}</TitleNavbar>
+          <TitleNavbar href={`/${route}`}>{title}</TitleNavbar>
         </Title>
       </Section>
       <Section>

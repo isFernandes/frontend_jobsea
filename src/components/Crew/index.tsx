@@ -20,7 +20,7 @@ interface CrewsProp {
 const CrewCard: React.FC<CrewsProp> = ({ crew }) => {
   const dispatch = useDispatch();
   const handleClick = async (id: string) => {
-    console.log(id)
+
     await dispatch(setProject(id));
 
   }
@@ -39,7 +39,7 @@ const CrewCard: React.FC<CrewsProp> = ({ crew }) => {
             {crew.tagTecnicas}
           </DetailsInfo>
           <OwnerInfo >
-            Cliente - {crew.tempoEstimado}
+            Dias para realizacao: {crew.tempoEstimado}
           </OwnerInfo>
         </Content>
       </Container>

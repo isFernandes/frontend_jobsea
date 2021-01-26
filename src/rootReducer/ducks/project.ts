@@ -42,8 +42,6 @@ export const setProject = (id:string) => async (dispatch:any) => {
   
   return await getProject(id).then(
     (response:any) => {
-      console.log(response)
-      console.log(id)
       dispatch({
         type: SET_PROJECT,
         payload: response.data,

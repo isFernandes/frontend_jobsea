@@ -11,7 +11,7 @@ import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
 import { getUser } from "../../services/userServices";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { logout } from "../../rootReducer/ducks/auth";
 
 function Profile(props:any){
@@ -109,6 +109,8 @@ function Profile(props:any){
     }
   }
 
+  const loggedUser = useSelector((state: RootStateOrAny) => state.auth.user);
+
   return (
     <>
       <Navbar route="profile" placeholder="Busque um freelancer ..." title="Dashboard" >
@@ -135,8 +137,8 @@ function Profile(props:any){
               <EditIcon fontSize="small" />
             </Icon>
           </Header>
-          {user ? (<UserData>{`${user.nome}, ${user.email}`}</UserData>) : (<UserData>
-            nome_Usuario, equipes_participantes, techs_Conhecidas
+          {loggedUser ? (<UserData>{`${loggedUser.nome}, ${loggedUser.email}`}</UserData>) : (<UserData>
+            nome_Usuario, email_Usuario
           </UserData>)}
           <div className="align ">
             <InputLabel id="label">Habilidades Extras</InputLabel>

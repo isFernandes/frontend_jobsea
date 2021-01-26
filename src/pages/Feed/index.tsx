@@ -40,16 +40,21 @@ function Feed(props: any) {
     <Container>
       <Navbar route="feed" placeholder="Busque um freelancer ..." title="JOB SEA">
         <Children>
-          <Link to="/create-project">
-            <Button variant="text" style={{ color: "white" }} >
-              Criar projeto
-          </Button>
-          </Link>
           <Button variant="text" style={{ color: "white" }} onClick={() => {
             handleLogout();
           }}>
             Log Out
           </Button>
+          <Link to="/create-project">
+            <Button variant="text" style={{ color: "white" }} >
+              Criar projeto
+          </Button>
+          </Link>
+          <Link to="/profile">
+            <Button variant="text" style={{ color: "white" }} >
+              Perfil
+          </Button>
+          </Link>
         </Children>
       </Navbar>
       <Content>

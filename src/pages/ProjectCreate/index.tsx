@@ -57,7 +57,6 @@ function ProjectCreate(props:any) {
   }
   const changeVerba = (value: any) => {
     setVerba(value);
-    console.log(verba)
   }
   const changeTime = (value: string) => {
     setTempoEstimado(value);
@@ -162,6 +161,7 @@ function ProjectCreate(props:any) {
             <InputDefault 
               style={{ flex: 1, minWidth: "90%" }}
               name="verba"
+              type="number"
               placeholder="Valor disponivel" 
               newValue={changeVerba} 
               value={verba} />
