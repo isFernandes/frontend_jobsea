@@ -66,11 +66,21 @@ function Login(props: any) {
         </ButtonArea>
         <Link to="/singup" style={{textDecoration: "none", color:"white", fontFamily:"DesirasNonCommercial"}} >Cadastre-se</Link>
       </Form>
+      <FooterText>ENCONTRE SEU JOB NESSE MAR DE OPORTUNIDADES . . .</FooterText>
     </Container>
   );
 }
 
 export default Login;
+
+const FooterText = styled.p`
+    font-family: DesirasNonCommercial;
+    color: #ffffff;
+    font-size: 24px;
+    text-align: center;
+    letter-spacing:1.5px;
+    word-wrap: break-word;
+`;
 
 const Container = styled.div`
   display: flex;
