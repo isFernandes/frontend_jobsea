@@ -1,12 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+import { Button } from "@material-ui/core";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import CrewCard, { Crew } from "../../components/Crew";
 import Navbar from '../../components/Navbar';
 import { getAllProject } from "../../services/projectServices";
+import { logout } from "../../rootReducer/ducks/auth";
+import { Link } from "react-router-dom";
 
-function Feed() {
+function Feed(props: any) {
+  const dispatch = useDispatch();
   const [crews, setCrews] = useState([]);
 
   useEffect(() => {
@@ -19,17 +24,41 @@ function Feed() {
     getProjects();
   }, []);
 
+  const handleLogout = async () => {
+    try {
+      await dispatch(logout())
+      props.history.push("/login");
+      window.location.reload();
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  
   return (
     <Container>
-      <Navbar route="feed" placeholder="Busque um freelancer ..." title="JOB SEA" />
+      <Navbar route="feed" placeholder="Busque um freelancer ..." title="JOB SEA">
+        <Children>
+          <Link to="/create-project">
+            <Button variant="text" style={{ color: "white" }} >
+              Criar projeto
+          </Button>
+          </Link>
+          <Button variant="text" style={{ color: "white" }} onClick={() => {
+            handleLogout();
+          }}>
+            Log Out
+          </Button>
+        </Children>
+      </Navbar>
       <Content>
-        <Filtros></Filtros>
+        {/* <Filtros></Filtros> */}
         <MainFeed>
           {crews.map((crew: Crew) => (
-              <CrewCard key={crew.id} crew={crew} />
+            <CrewCard key={crew._id} crew={crew} />
           ))}
         </MainFeed>
-        <Mural></Mural>
       </Content>
     </Container>
   );
@@ -42,6 +71,17 @@ const Container = styled.div`
   height: 100vh;
 `;
 
+const Children = styled.form`
+  align-self:center;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  max-width: 300px;
+  @media(max-width: 1000px){
+    flex-direction: column;
+  }
+`;
+
 const Content = styled.div`
   display: flex;
   flex-direction: row;
@@ -52,21 +92,23 @@ const Content = styled.div`
 `;
 
 
-const Filtros = styled.div`
-  flex: 1;
-  border: 0.5px solid #d2dbdd;
-  box-shadow: 3px 4px 4px #c7c4c4;
-`;
 
 const MainFeed = styled.div`
   display: flex;
   flex: 2;
   flex-direction: column;
-`;
+  `;
 
-const Mural = styled.div`
-  margin-top:80px;
-  background-color: black;
-  flex: 1;
-  max-height: 200px;
-`;
+// const Filtros = styled.div`
+//     flex: 1;
+//     border: 0.5px solid #d2dbdd;
+//     box-shadow: 3px 4px 4px #c7c4c4;
+//     max-width: 300px;
+//   `;
+
+// const Mural = styled.div`
+//   margin-top:80px;
+//   background-color: black;
+//   flex: 1;
+//   max-height: 200px;
+// `;

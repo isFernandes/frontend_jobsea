@@ -1,15 +1,17 @@
 import React, { FormEvent, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { InputLabel, Select, MenuItem } from "@material-ui/core";
+// import { InputLabel, Select, MenuItem } from "@material-ui/core";
+import {useDispatch} from "react-redux";
 
 import "./index.css";
 import imgBack from "../../assets/Signup/bg mar barco_Prancheta 1.png";
 import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
-import { createUser as create } from "../../services/userServices";
+import {register} from "../../rootReducer/ducks/auth";
 
 function SingUp() {
+  const dispatch = useDispatch()
   const [nome, setNome] = useState("")
   const [email, setEmail] = useState("")
   const [senha, setSenha] = useState("")
@@ -27,10 +29,7 @@ function SingUp() {
   const createUser = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const newUser ={
-        email, nome, senha
-      }
-      const createdUser = await create(newUser);
+      const createdUser = await dispatch(register(nome, email, senha))
       console.log(createdUser);
       setNome("")
       setEmail("")
@@ -51,23 +50,7 @@ function SingUp() {
             <InputDefault style={{ flex: 1, minWidth: "90%" }} name="nome" placeholder="Nome" newValue={changeName} />
             <InputDefault style={{ flex: 1, minWidth: "90%" }} name="email" placeholder="E-Mail" newValue={changeEmail} />
             <InputDefault style={{ flex: 1, minWidth: "90%" }} name="senha" placeholder="Senha" newValue={changeSenha} />
-            <div style={{ display: "flex", flex: 1, maxHeight: "60px", flexDirection: "column", minWidth: "90%" }}>
-              <InputLabel id="select-label" className="inputLabel">
-                Função
-              </InputLabel>
-              <Select
-                className="select"
-                labelId="select-label"
-                id="simple-select"
-              >
-                <MenuItem value="" disabled>
-                  Função
-                </MenuItem>
-                <MenuItem value={1}>Realizar projetos</MenuItem>
-                <MenuItem value={2}>Publicar projetos</MenuItem>
-                <MenuItem value={3}>Realizar e publicar projetos</MenuItem>
-              </Select>
-            </div>
+            
             <ButtonArea>
               <button
                 className="back-button"
