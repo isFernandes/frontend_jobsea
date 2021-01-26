@@ -10,7 +10,7 @@ import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
 import {register} from "../../rootReducer/ducks/auth";
 
-function SingUp() {
+function SingUp(props:any) {
   const dispatch = useDispatch()
   const [nome, setNome] = useState("")
   const [email, setEmail] = useState("")
@@ -29,11 +29,12 @@ function SingUp() {
   const createUser = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const createdUser = await dispatch(register(nome, email, senha))
-      console.log(createdUser);
+      const createdUser:any = await dispatch(register(nome, email, senha))
+      alert("Seu acesso foi criado com sucesso" + createdUser.nome);
       setNome("")
       setEmail("")
       setSenha("")
+      props.history.push("/")
     } catch (error) {
       console.log(error);
     }

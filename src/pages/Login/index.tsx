@@ -34,6 +34,7 @@ function Login(props: any) {
       if (isLoggedIn) {
         props.history.push("/feed");
         window.location.reload();
+        return <Redirect to="/feed"/>
       }
     }
 
