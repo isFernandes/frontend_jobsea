@@ -9,7 +9,7 @@ import InputDefault from "../../components/InputDefault";
 import imgBackground from "../../assets/HomePage/fundo@72x.png";
 import { login } from "../../rootReducer/ducks/auth";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import logotipeMain from "../../assets/HomePage/logotipo-caravela@72x.png";
 
@@ -64,6 +64,7 @@ function Login(props: any) {
           <ButtonContained text="Enviar" type="submit" onClick={handleSubmit} />
           {/* <button type="submit">Login</button> */}
         </ButtonArea>
+        <Link to="/singup" style={{textDecoration: "none", color:"white", fontFamily:"DesirasNonCommercial"}} >Cadastre-se</Link>
       </Form>
     </Container>
   );
