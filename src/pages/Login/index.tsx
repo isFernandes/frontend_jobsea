@@ -52,20 +52,21 @@ function Login(props: any) {
   return (
     <Container>
       <ImageBackground src={imgBackground} />
-
+    <div style={{display:"flex" , width:"90vw", justifyContent:"center"}}>
       <Logo src={logotipeMain} />
       <Form onSubmit={handleSubmit} >
         <h1>Login</h1>
 
         <InputDefault style={{ minWidth: "90%", marginBottom: "15px", marginTop: "25px" }} name="email-login" placeholder="E-MAIL" type="email" newValue={changeEmail} />
-        <InputDefault style={{ minWidth: "90%", marginTop: "15px" }} name="password-login" placeholder="Senha" type="password" newValue={changePass} />
+        <InputDefault style={{ minWidth: "90%", marginTop: "15px", marginBottom:"15px" }} name="password-login" placeholder="Senha" type="password" newValue={changePass} />
         <ButtonArea id="buttonArea" className="input-style">
           <ButtonOutlined text="Esqueci a senha" routeParams="/remember-password" />
           <ButtonContained text="Enviar" type="submit" onClick={handleSubmit} />
           {/* <button type="submit">Login</button> */}
         </ButtonArea>
-        <Link to="/singup" style={{textDecoration: "none", color:"white", fontFamily:"DesirasNonCommercial"}} >Cadastre-se</Link>
+        <Link to="/singup" style={{marginBottom: "10px", marginTop:"10px", fontSize:"20px", letterSpacing:"2px", textDecoration: "none", color:"white", fontFamily:"DesirasNonCommercial"}} >Cadastre-se</Link>
       </Form>
+      </div>
       <FooterText>ENCONTRE SEU JOB NESSE MAR DE OPORTUNIDADES . . .</FooterText>
     </Container>
   );
@@ -80,11 +81,12 @@ const FooterText = styled.p`
     text-align: center;
     letter-spacing:1.5px;
     word-wrap: break-word;
+    z-index:2;
 `;
 
 const Container = styled.div`
   display: flex;
-  /* flex-direction:column; */
+  flex-direction:column;
   justify-content: space-evenly;
   align-items: center;
   flex: 1;
@@ -98,6 +100,7 @@ const Logo = styled.img`
   max-height: 250px;
   display: flex;
   align-self: center;
+  margin-right:25px;
   @media(max-width: 700px){
     height: 180px;
     margin-top: 0;
@@ -116,6 +119,7 @@ const Form = styled.form`
   opacity: 0.95;
   max-width: 500px;
   border-radius: 4px;
+  padding-bottom:10px;
   @media(max-width:650px){
     max-width: 85%;
     padding:8px;
