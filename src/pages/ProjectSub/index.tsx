@@ -79,8 +79,8 @@ function ProjectSub(props: any) {
             <OwnerInfo >
               Cliente - {selectedProject !== null ? selectedProject.owner : "Owner do Projeto"}
             </OwnerInfo>
-            {message ? Message(message) : ""}
             <ButtonsArea>
+            {message ? Message(message) : ""}
               <ButtonOutlined text="Cancelar" routeParams="/feed" type="text" />
               <ButtonContained text="Candidatar-se" type="submit" />
             </ButtonsArea>
