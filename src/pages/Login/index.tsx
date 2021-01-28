@@ -12,14 +12,16 @@ import { login } from "../../rootReducer/ducks/auth";
 import { Link, Redirect } from "react-router-dom";
 
 import logotipeMain from "../../assets/HomePage/logotipo-caravela@72x.png";
+import Message from "../../components/Message";
 
 function Login(props: any) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  const { isLoggedIn } = useSelector((state: RootStateOrAny) => state.auth);
-
+  const { isLoggedIn } = useSelector((state: RootStateOrAny) => state.auth);  
+  const { message } = useSelector((state: RootStateOrAny) => state.message);
+  
   const changeEmail = (email: string) => {
     setEmail(email)
   }
@@ -46,7 +48,7 @@ function Login(props: any) {
     } catch (error) {
       console.log(error)
     }
-
+    
   }
 
   return (
@@ -59,6 +61,7 @@ function Login(props: any) {
 
         <InputDefault style={{ minWidth: "90%", marginBottom: "15px", marginTop: "25px" }} name="email-login" placeholder="E-MAIL" type="email" newValue={changeEmail} />
         <InputDefault style={{ minWidth: "90%", marginTop: "15px", marginBottom:"15px" }} name="password-login" placeholder="Senha" type="password" newValue={changePass} />
+          {message ? Message(message) : ""}
         <ButtonArea id="buttonArea" className="input-style">
           <ButtonOutlined text="Esqueci a senha" routeParams="/remember-password" />
           <ButtonContained text="Enviar" type="submit" onClick={handleSubmit} />
