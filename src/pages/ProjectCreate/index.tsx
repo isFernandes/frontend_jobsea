@@ -102,7 +102,7 @@ function ProjectCreate(props:any) {
 
   return (
     <>
-      <Navbar route="create-project" placeholder="Busque um freelancer ..." title="PROJETO">
+      <Navbar route="feed" placeholder="Busque um freelancer ..." title="PROJETO">
         
       <Children>
           <Link to="/create-project">

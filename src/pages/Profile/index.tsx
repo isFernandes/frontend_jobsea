@@ -116,7 +116,7 @@ function Profile(props:any){
   
   return (
     <>
-      <Navbar route="profile" placeholder="Busque um freelancer ..." title="Dashboard" >
+      <Navbar route="feed" placeholder="Busque um freelancer ..." title="Dashboard" >
 
         <Children>
           <Link to="/create-project">
