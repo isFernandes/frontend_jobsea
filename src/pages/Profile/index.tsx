@@ -9,7 +9,7 @@ import avatarFake from "../../assets/Profile/defaultAvatar@72x.png";
 import imgBackground from "../../assets/HomePage/fundo@72x.png";
 import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
-import { getUser } from "../../services/userServices";
+import { getUser, updateUser } from "../../services/userServices";
 import { Link } from "react-router-dom";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { logout } from "../../rootReducer/ducks/auth";
@@ -17,6 +17,9 @@ import Message from "../../components/Message";
 
 function Profile(props:any){
   const [user, setUser] = useState();
+  const [techs, setTechs] = useState<string[]>([]);
+  const [softs, setSofts] = useState<string[]>([]);
+  const [bio, setBio] = useState("");
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -29,6 +32,7 @@ function Profile(props:any){
   };
 
   const { message } = useSelector((state: RootStateOrAny) => state.message);
+  const loggedUser = useSelector((state: RootStateOrAny) => state.auth.user);
   
   useEffect(() => {
     const getProjects = async () => {
@@ -78,10 +82,6 @@ function Profile(props:any){
     "Calmo",
   ];
   
-  const [techs, setTechs] = useState<string[]>([]);
-  const [softs, setSofts] = useState<string[]>([]);
-  const [bio, setBio] = useState("");
-  
   const handleSelectTechs = (event: React.ChangeEvent<{ value: unknown }>) => {
     setTechs(event.target.value as string[]);
   };
@@ -90,9 +90,19 @@ function Profile(props:any){
     setSofts(event.target.value as string[]);
   };
 
-  const handleDataSubmit = (e: FormEvent) => {
+  const handleDataSubmit = async (e: FormEvent) => {
     e.preventDefault();
-
+    const techsSkills = techs.toString();
+    const softSkills = softs.toString();
+    const newDataUser = {
+      techsSkills, softSkills, bio
+    }
+    try {
+      await updateUser( loggedUser.id, newDataUser);
+      setBio("")
+    } catch (error) {
+      Message("Ocorreu um erro")
+    }
     console.log(bio);
   }
   const changeBio = (bio: string) => {
@@ -111,8 +121,6 @@ function Profile(props:any){
       console.log(error)
     }
   }
-
-  const loggedUser = useSelector((state: RootStateOrAny) => state.auth.user);
   
   return (
     <>
@@ -199,7 +207,7 @@ function Profile(props:any){
               ))}
             </Select>
           </div>
-          <InputDefault style={{ width: "450px", height: "80px" }} name="bio" placeholder="Bio" newValue={changeBio} />
+          <InputDefault style={{ width: "80%", height: "80px" }} name="bio" placeholder="Bio" newValue={changeBio} />
           {message ? Message(message) : ""}
           <ButtonSave className="button">Salvar Dados</ButtonSave>
         </Content>
