@@ -124,6 +124,11 @@ function Profile(props:any){
               Criar projeto
           </Button>
           </Link>
+          <Link to="/user-projects">
+            <Button variant="text" style={{ color: "white" }} >
+              Seus projetos
+            </Button>
+          </Link>
           <Button variant="text" style={{ color: "white" }} onClick={() => {
             handleLogout();
           }}>
