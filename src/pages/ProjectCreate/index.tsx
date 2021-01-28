@@ -207,13 +207,12 @@ const Form = styled.form`
   width: 100%;
   z-index: 1;
 `;
-
 const Children = styled.form`
   align-self:flex-end;
   display: flex;
   flex: 1;
-  justify-content: center;
-  max-width: 300px;
+  justify-content: space-between;
+  min-width:100%;
   @media(max-width: 1000px){
     flex-direction: column;
   }
