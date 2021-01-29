@@ -22,6 +22,19 @@ const login = (email:string, password:any) => {
     });
 };
 
+const remember = (email:string) => {
+  return api.post("/api/usuario/remember", {
+      email
+    })
+    .then((response) => {
+      if (response.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
+
+      return response.data;
+    });
+};
+
 const logout = () => {
   localStorage.removeItem("user");
 };
@@ -30,4 +43,5 @@ export default {
   register,
   login,
   logout,
+  remember
 };

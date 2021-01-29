@@ -5,18 +5,30 @@ import bgRemember from "../../assets/RememberPassword/bg_remember.png";
 import ButtonOutlined from "../../components/ButtonOutlined";
 import ButtonContained from "../../components/ButtonContained";
 import InputDefault from "../../components/InputDefault";
+import { remember } from "../../rootReducer/ducks/auth";
+import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 function EsqueceuSenha() {
   const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
 
   const changeEmail = (email:string)=>{
     setEmail(email)
   }
 
-  const handleSubmit =(e: FormEvent)=>{
-    e.preventDefault();
+  // const handleSubmit =(e: FormEvent)=>{
+  //   e.preventDefault();
 
-    console.log(email)
+  //   console.log(email)
+  // }
+
+  const handleSubmit = async () => {
+    try {
+      await dispatch(remember(email))
+    } catch (error) {
+      console.log(error)
+    }
+
   }
 
   return (
