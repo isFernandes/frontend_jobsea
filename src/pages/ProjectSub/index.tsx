@@ -150,12 +150,12 @@ const InfoCard = styled.form`
   border: 0.5px solid #d2dbdd;
   box-shadow: 3px 4px 4px #c7c4c4;
   padding:0;
-  height: 75%;
-  width: 600px;
+  min-height: 75%;
+  max-width: 600px;
   margin-right:40px;
   align-self: center;
   border-radius: 3px;
-  padding: 0 0 0 10px;
+  padding: 0 10px 0 10px;
   z-index:0;
 `;
 
