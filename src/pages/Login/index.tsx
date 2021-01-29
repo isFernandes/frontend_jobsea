@@ -64,8 +64,8 @@ function Login(props: any) {
           {message ? Message(message) : ""}
           <ButtonArea id="buttonArea" className="input-style">
             <ButtonOutlined text="Esqueci a senha" routeParams="/remember-password" />
-            <ButtonContained text="Enviar" type="submit" onClick={handleSubmit} />
-            {/* <button type="submit">Login</button> */}
+            <ButtonContained text="Entrar" type="submit" onClick={handleSubmit} />
+           
           </ButtonArea>
           <Link to="/singup" style={{ marginBottom: "10px", marginTop: "10px", fontSize: "20px", letterSpacing: "2px", textDecoration: "none", color: "white", fontFamily: "DesirasNonCommercial" }} >Cadastre-se</Link>
         </Form>
