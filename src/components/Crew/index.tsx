@@ -18,11 +18,11 @@ interface CrewsProp {
 }
 
 function filterDesc(desc:any) {
-  if (desc.length < 50) {
+  if (desc.length < 100) {
     return desc;
   }
 
-  return `${desc.substring(0, 47)}...`;
+  return `${desc.substring(0, 97)}...`;
 }
 
 
