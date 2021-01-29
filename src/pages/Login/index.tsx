@@ -32,7 +32,6 @@ function Login(props: any) {
   useEffect(()=>{
 
     const redirectFeed = () => {
-      console.log(isLoggedIn)
       if (isLoggedIn) {
         props.history.push("/feed");
         window.location.reload();
