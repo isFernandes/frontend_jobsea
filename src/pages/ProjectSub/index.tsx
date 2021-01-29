@@ -132,7 +132,7 @@ const Children = styled.form`
 `;
 
 const ButtonsArea = styled.div`
-  margin:80px 15px 0 0;
+  margin:0 15px 0 0;
   background-color: transparent;
   display:flex;
   flex: 1;
@@ -201,4 +201,5 @@ const OwnerInfo = styled.p`
     align-self: flex-start;
     letter-spacing: 1.25px;
     font-weight:700;
+    margin-bottom:15px;
 `;
