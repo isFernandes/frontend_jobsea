@@ -24,6 +24,11 @@ export default function (state = initialState, action:any) {
         ...state,
         payload,
       };
+    case UPDATE_USER:
+      return {
+        ...state,
+        payload,
+      };
 
     default:
       return state;
@@ -74,7 +79,7 @@ export const updateProfile = (userId:string, newData:object) => async (dispatch:
     (response:any) => {
       dispatch({
         type: UPDATE_USER,
-        payload: response.data,
+        payload: response.data.user,
       });
 
       dispatch({
