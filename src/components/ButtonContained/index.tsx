@@ -14,9 +14,11 @@ interface ButtonProps {
  * 
  * @param param0 Botao preenchido
  */
-const ButtonContained: React.FC<ButtonProps> = ({ text, routeParams, type }) => {
+const ButtonContained: React.FC<ButtonProps> = ({ text, routeParams, type, onClick }) => {
     return (
-        <button id="buttonContained" type={type} >
+        <button id="buttonContained" type={type} onClick={()=>{
+            onClick()
+        }}>
             <Link style={{ color: '#3c7380' }} className="linking-button" to={routeParams}>
                 {text}
             </Link>

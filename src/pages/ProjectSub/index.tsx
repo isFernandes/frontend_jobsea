@@ -1,16 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { FormEvent } from "react";
+import React from "react";
 import styled from "styled-components";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 
 import Navbar from '../../components/Navbar';
 import ButtonOutlined from "../../components/ButtonOutlined"
 import ButtonContained from "../../components/ButtonContained"
-import { subProject } from "../../services/userServices";
 import { Link } from "react-router-dom";
 import { Button } from "@material-ui/core";
 import { logout } from "../../rootReducer/ducks/auth";
 import Message from "../../components/Message";
+import { subscribeProject } from "../../rootReducer/ducks/user";
 
 function ProjectSub(props: any) {
   const selectedProject = useSelector((state: RootStateOrAny) => state.project.selectedProject);
@@ -18,11 +18,11 @@ function ProjectSub(props: any) {
   
   const user = useSelector((state: RootStateOrAny) => state.auth.user);
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    // e.preventDefault();
     try {
-      await subProject(user.id, selectedProject.project._id);
-
+      console.log(user.id, selectedProject.project._id)
+      dispatch(subscribeProject(user.id, selectedProject.project._id));
     } catch (error) {
       console.log(error)
     }
@@ -80,11 +80,13 @@ function ProjectSub(props: any) {
               Cliente - {selectedProject !== null ? selectedProject.owner : "Owner do Projeto"}
             </OwnerInfo>
             <ButtonsArea>
-            {message ? Message(message) : ""}
               <ButtonOutlined text="Cancelar" routeParams="/feed" type="text" />
-              <ButtonContained text="Candidatar-se" type="submit" />
+              <ButtonContained onClick={()=>(
+                handleSubmit()
+                )} text="Candidatar-se" type="submit" />
             </ButtonsArea>
           </InfoCard>
+          {message ? Message(message) : ""}
         </MainFeed>
       </Content>
     </Container>
@@ -154,6 +156,7 @@ const InfoCard = styled.form`
   align-self: center;
   border-radius: 3px;
   padding: 0 0 0 10px;
+  z-index:0;
 `;
 
 const Title = styled.h1`
