@@ -15,7 +15,6 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { logout } from "../../rootReducer/ducks/auth";
 import Message from "../../components/Message";
 import { updateProfile } from "../../rootReducer/ducks/user";
-import IconPadrao from "../../assets/HomePage/leme-rodape@72x.png";
 
 
 function Profile(props:any){
@@ -174,13 +173,10 @@ function Profile(props:any){
             />
             <label htmlFor="icon-button-file">
               {imgUrl ? 
-              (<img  src={imgUrl} alt="profile-img"/>)
-              : <img  src={IconPadrao} alt="profile-img"/> }
+              (<Avatar  src={imgUrl} alt="profile-img"/>)
+              : <Avatar  src={avatarFake} alt="profile-img"/> }
             </label>
             
-            <Icon className="icon" >
-              <EditIcon fontSize="small" />
-            </Icon>
           </Header>
           {loggedUser ? (<UserData>{`${loggedUser.nome}, ${loggedUser.email}`}</UserData>) : (<UserData>
             nome_Usuario, email_Usuario
@@ -314,7 +310,7 @@ const Avatar = styled.img`
   border-radius: 400%;
   background-color: transparent;
   z-index: 1;
-  border: black solid 1px;
+  border: black solid .5px;
   width: 120px;
   height: 120px;
 `;
