@@ -15,12 +15,15 @@ import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { logout } from "../../rootReducer/ducks/auth";
 import Message from "../../components/Message";
 import { updateProfile } from "../../rootReducer/ducks/user";
+import IconPadrao from "../../assets/HomePage/leme-rodape@72x.png";
+
 
 function Profile(props:any){
   const [user, setUser] = useState();
   const [techs, setTechs] = useState<string[]>([]);
   const [softs, setSofts] = useState<string[]>([]);
   const [bio, setBio] = useState("");
+  const [imgUrl, setImgUrl] = useState("");
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -51,10 +54,19 @@ function Profile(props:any){
   //   console.log(loggedUser)
   // }
   
-  const editImage = () => {
-    alert("touch for update a picture");
-    // settingData()
-  };
+  const getBase64Img = (event: any): void => {
+    var file = event.target.files[0];
+    var reader:any = new FileReader();
+    if(reader){    
+      reader.onloadend = function() {
+        if(reader.result){
+          setImgUrl(reader.result)
+        }
+        console.log('RESULT', reader.result)
+      }
+    }
+    reader.readAsDataURL(file);
+  }
 
   // const saveForm = () => {
   //   alert("Dados Salvos");
@@ -95,8 +107,9 @@ function Profile(props:any){
     e.preventDefault();
     const techsSkills = techs.toString();
     const softSkills = softs.toString();
+    const imgUrlBase = imgUrl.toString();
     const newDataUser = {
-      techsSkills, softSkills, bio
+      techsSkills, softSkills, bio, imgUrlBase
     }
     try {
       dispatch(updateProfile(loggedUser.id, newDataUser));
@@ -150,8 +163,22 @@ function Profile(props:any){
         <ImageBackground src={imgBackground} />
         <Content onSubmit={handleDataSubmit}>
           <Header>
-            <Avatar src={avatarFake} />
-            <Icon className="icon" onClick={() => editImage()}>
+            
+            <input
+              accept="image/*"
+              style={{ display: "none" }}
+              id="icon-button-file"
+              type="file"
+              name="imgUrl"
+              onChange={getBase64Img}
+            />
+            <label htmlFor="icon-button-file">
+              {imgUrl ? 
+              (<img  src={imgUrl} alt="profile-img"/>)
+              : <img  src={IconPadrao} alt="profile-img"/> }
+            </label>
+            
+            <Icon className="icon" >
               <EditIcon fontSize="small" />
             </Icon>
           </Header>
