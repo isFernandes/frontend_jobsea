@@ -41,7 +41,8 @@ function Login(props: any) {
     }
 
     redirectFeed();
-  }, [isLoggedIn, props.history])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn])
   const handleSubmit = async () => {
     try {
       await dispatch(login(email, pass))
