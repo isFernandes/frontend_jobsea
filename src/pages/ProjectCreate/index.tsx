@@ -8,11 +8,12 @@ import "./index.css";
 import imgBack from "../../assets/Signup/bg mar barco_Prancheta 1.png";
 import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
-import { createProject } from "../../services/projectServices";
 import { logout } from "../../rootReducer/ducks/auth";
 import Message from "../../components/Message";
+import { projectCreate } from "../../rootReducer/ducks/project";
 
 function ProjectCreate(props:any) {
+  const dispatch=useDispatch()
   const [nome, setNome] = useState("");
   const [selectedTechs, setSelectedTechs] = useState<string[]>([]);
   const [descricao, setDescricao] = useState("");
@@ -76,7 +77,7 @@ function ProjectCreate(props:any) {
     try {
 
       const ownerId = user.id;
-      await createProject(ownerId, newProject);
+      dispatch(projectCreate(ownerId, newProject))
       setDescricao("")
       setNome("")
       setTempoEstimado("")
@@ -87,7 +88,7 @@ function ProjectCreate(props:any) {
   }
   
   
-  const dispatch=useDispatch()
+  
   
   const handleLogout = async () => {
     try {

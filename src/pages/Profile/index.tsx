@@ -9,11 +9,12 @@ import avatarFake from "../../assets/Profile/defaultAvatar@72x.png";
 import imgBackground from "../../assets/HomePage/fundo@72x.png";
 import Navbar from "../../components/Navbar";
 import InputDefault from "../../components/InputDefault";
-import { getUser, updateUser } from "../../services/userServices";
+import { getUser } from "../../services/userServices";
 import { Link } from "react-router-dom";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { logout } from "../../rootReducer/ducks/auth";
 import Message from "../../components/Message";
+import { updateProfile } from "../../rootReducer/ducks/user";
 
 function Profile(props:any){
   const [user, setUser] = useState();
@@ -98,7 +99,8 @@ function Profile(props:any){
       techsSkills, softSkills, bio
     }
     try {
-      await updateUser( loggedUser.id, newDataUser);
+      dispatch(updateProfile(loggedUser.id, newDataUser));
+      
       setBio("")
     } catch (error) {
       Message("Ocorreu um erro")
