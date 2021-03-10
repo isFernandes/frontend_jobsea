@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import { Link, Redirect } from "react-router-dom";
 
 import "./index.css";
 import ButtonOutlined from "../../components/ButtonOutlined";
@@ -8,9 +9,7 @@ import ButtonContained from "../../components/ButtonContained";
 import InputDefault from "../../components/InputDefault";
 import imgBackground from "../../assets/HomePage/fundo@72x.png";
 import { login } from "../../rootReducer/ducks/auth";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { Link, Redirect } from "react-router-dom";
-
+import { Content, ButtonArea, Container, FooterText, Form, ImageBackground, Logo } from "./styles";
 import logotipeMain from "../../assets/HomePage/logotipo-caravela@72x.png";
 import Message from "../../components/Message";
 
@@ -65,7 +64,7 @@ function Login(props: any) {
           <ButtonArea id="buttonArea" className="input-style">
             <ButtonOutlined text="Esqueci a senha" routeParams="/remember-password" />
             <ButtonContained text="Entrar" type="submit" onClick={handleSubmit} />
-           
+
           </ButtonArea>
           <Link to="/singup" style={{ marginBottom: "10px", marginTop: "10px", fontSize: "20px", letterSpacing: "2px", textDecoration: "none", color: "white", fontFamily: "DesirasNonCommercial" }} >Cadastre-se</Link>
         </Form>
@@ -76,83 +75,3 @@ function Login(props: any) {
 }
 
 export default Login;
-
-const FooterText = styled.p`
-    font-family: DesirasNonCommercial;
-    color: #ffffff;
-    font-size: 24px;
-    text-align: center;
-    letter-spacing:1.5px;
-    word-wrap: break-word;
-    z-index:2;
-`;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction:column;
-  justify-content: space-evenly;
-  align-items: center;
-  flex: 1;
-  height: 100%;
-   width: 100%;
-   align-self: center;
-  `;
-const Content = styled.div`
-  display:flex;
-  width:90vw;
-  justify-content:center;
-  @media(max-width:700px){
-    flex-direction:column;
-  }
-  `;
-
-const Logo = styled.img`
-  position: relative;
-  max-height: 250px;
-  display: flex;
-  align-self: center;
-  margin-right:25px;
-  @media(max-width: 700px){
-    height: 180px;
-    margin-top: 0;
-  }
-`;
-
-const Form = styled.form`
-  background-color: #3c7380;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  flex: 2;
-  justify-content: space-around;
-  align-items: center;
-  padding: 0;
-  opacity: 0.95;
-  max-width: 500px;
-  border-radius: 4px;
-  padding-bottom:10px;
-  @media(max-width:650px){
-    max-width: 85%;
-    padding:8px;
-    align-self: center;
-    justify-self: center;
-  }
-`;
-
-const ImageBackground = styled.img`
-  position: absolute;
-  z-index: 0;
-  height: 100vh;
-  width: 100vw;
-`;
-
-const ButtonArea = styled.div`
-  margin: 2em 8px 8px 8px;
-  display: flex;
-  max-width: 350px;
-  max-height: 60px;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  flex: 1;
-`;
